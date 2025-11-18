@@ -7,6 +7,7 @@ services:
     hostname: netdata
     environment:
       - NETDATA_CLAIM_TOKEN=disable
+      - NETDATA_DISABLE_CLOUD=yes
     cap_add:
       - SYS_PTRACE
     security_opt:
