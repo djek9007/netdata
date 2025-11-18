@@ -8,6 +8,7 @@ services:
     environment:
       - NETDATA_CLAIM_TOKEN=disable
       - NETDATA_DISABLE_CLOUD=yes
+      - DISABLE_TELEMETRY=1
     cap_add:
       - SYS_PTRACE
     security_opt:
