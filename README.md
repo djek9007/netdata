@@ -130,6 +130,7 @@ docker-compose down
 - Файл `docker-compose.npm-only.yml` (используется вместо основного)
 - Установленный и работающий Nginx Proxy Manager (или другой reverse proxy)
 - Папка `nginx-proxy/` **НЕ используется** (можно удалить)
+- Файл `NPM_AUTH_SETUP.md` содержит полную инструкцию по авторизации в NPM
 
 ### Быстрый старт Варианта 2
 
@@ -158,20 +159,21 @@ docker-compose -f docker-compose.npm-only.yml up -d
 docker ps --filter "name=netdata"
 ```
 
-5. Добавьте прокси-хост в Nginx Proxy Manager:
-   - **Domain Names:** ваш доменный имя (например, `netdata.example.com`)
-   - **Scheme:** `http`
-   - **Forward Hostname/IP:** `netdata` (имя сервиса в Docker-сети `monitoring`)
-   - **Forward Port:** `19999`
-   - **Cache Assets:** можно включить
-   - **Block Common Exploits:** рекомендуется включить
-   - **Access List:** добавьте базовую аутентификацию (в NPM: вкладка "Access List" → создайте новый)
+5. **Настройте авторизацию в Nginx Proxy Manager:**
+   
+   Следуйте подробной инструкции в файле `NPM_AUTH_SETUP.md`:
+   - Создайте Access List в NPM (Меню → Access List → Add Access List)
+   - Добавьте Basic Auth с логином и паролем
+   - Привяжите Access List к хосту Netdata (Proxy Hosts → Edit → Access)
+   - Сохраните и проверьте — теперь будет запрос авторизации
 
 6. Откройте веб-интерфейс Netdata через ваш домен:
 
 ```
 https://netdata.example.com
 ```
+
+Браузер запросит логин и пароль (установленные в Access List NPM).
 
 7. Для остановки:
 
@@ -206,20 +208,21 @@ docker-compose -f docker-compose.npm-only.yml up -d
 docker ps --filter "name=netdata"
 ```
 
-5. Добавьте прокси-хост в Nginx Proxy Manager:
-   - **Domain Names:** ваш доменный имя (например, `netdata.example.com`)
-   - **Scheme:** `http`
-   - **Forward Hostname/IP:** `netdata` (имя сервиса в Docker-сети `monitoring`)
-   - **Forward Port:** `19999`
-   - **Cache Assets:** можно включить
-   - **Block Common Exploits:** рекомендуется включить
-   - **Access List:** добавьте базовую аутентификацию (в NPM: вкладка "Access List" → создайте новый)
+5. **Настройте авторизацию в Nginx Proxy Manager:**
+   
+   Следуйте подробной инструкции в файле `NPM_AUTH_SETUP.md`:
+   - Создайте Access List в NPM (Меню → Access List → Add Access List)
+   - Добавьте Basic Auth с логином и паролем
+   - Привяжите Access List к хосту Netdata (Proxy Hosts → Edit → Access)
+   - Сохраните и проверьте — теперь будет запрос авторизации
 
 6. Откройте веб-интерфейс Netdata через ваш домен:
 
 ```
 https://netdata.example.com
 ```
+
+Браузер запросит логин и пароль (установленные в Access List NPM).
 
 7. Для остановки:
 
