@@ -5,6 +5,8 @@ services:
     image: netdata/netdata:latest
     container_name: netdata
     hostname: netdata
+    environment:
+      - NETDATA_CLAIM_TOKEN=disable
     cap_add:
       - SYS_PTRACE
     security_opt:
